@@ -55,6 +55,15 @@ Key Features:
     video: null
   },
 
+   {
+    title: "Personal Portfolio",
+    description: "The website you are at now! I built this to showcase my projects i've done so far. Built with React and Vite. React was my choice of framework because of its reusable components, perfect for adding new projects in the future.",
+    category: "Web Applications",
+    techStack: ["React", "Vite", "JavaScript", "CSS3"],
+    details: "The website you are at now! I built this to showcase my projects i've done so far. Built with React and Vite. React was my choice of framework because of its reusable components, perfect for adding new projects in the future.",
+    images: []
+  },
+
   {
     title: "Shoe Inventory Management System",
     description: "A database-driven inventory system for a multi-store shoe retailer, featuring CRUD operations, role-based access, and analytics for stock and sales performance.",
@@ -95,14 +104,7 @@ Key Features:
       beejImage
     ]
   },
-  {
-    title: "Personal Portfolio",
-    description: "A modern portfolio website built with React.",
-    category: "Web Applications",
-    techStack: ["React", "Vite", "JavaScript", "CSS3"],
-    details: "The website you are at now! I built this to showcase my projects i've done so far. Built with React and Vite. React was my choice of framework because of its reusable components, perfect for adding new projects in the future.",
-    images: []
-  },
+ 
 
 
   {
