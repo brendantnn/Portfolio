@@ -21,14 +21,18 @@ const Header = () => (
     padding: '0.7rem 0',
     boxSizing: 'border-box',
   }}>
-    <nav style={{
-      maxWidth: 1200,
-      margin: '0 auto',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '0 2rem',
-    }}>
+    <nav
+  style={{
+    maxWidth: 1200,
+    margin: '0 auto',
+    display: 'flex',
+    flexWrap: 'wrap', 
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '0 1rem',
+  }}
+>
+
       {/* Logo/Name */}
       <div style={{
         fontWeight: 700,
@@ -50,7 +54,7 @@ const Header = () => (
         }} />
       </div>
       {/* Nav Links */}
-      <div style={{ display: 'flex', gap: '2.2rem' }}>
+      <div style={{ display: 'flex', gap: '2.2rem',  }}>
         {navLinks.map(link => (
           <a
             key={link.name}

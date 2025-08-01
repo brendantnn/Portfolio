@@ -2,10 +2,11 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   text-align: center;
 }
 
@@ -44,3 +45,110 @@ body {
 .read-the-docs {
   color: #888;
 }
+
+@media (max-width: 768px) {
+  #root {
+    text-align: left; /* Improves readability on mobile */
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+
+  .logo {
+    height: 4em;
+    padding: 1em;
+  }
+}
+
+/* Default (for desktop) */
+#about {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 7vw;
+  padding-right: 7vw;
+  min-height: 90vh;
+  background-image: url('/src/assets/myphoto.jpg'); /* adjust path if needed */
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-textbox {
+  position: relative;
+  z-index: 2;
+  color: #fafafa;
+  text-align: left;
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  background: rgba(36, 36, 40, 0.75);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.about-heading {
+  font-size: 5rem; 
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.about-paragraph {
+  font-size: 1.5rem; 
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+
+/* ✅ Mobile view */
+@media (max-width: 768px) {
+  #about {
+    justify-content: center;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 3rem; 
+    background-position: center 50%;
+    min-height: 0;
+  }
+
+  /* Target the text box inside #about */
+    .about-textbox {
+    width: 70%;
+    padding: 1.5rem;
+  }
+
+  .about-heading {
+    font-size: 2rem;
+  }
+
+  .about-paragraph {
+    font-size: 1rem;
+  }
+
+}
+
+
+
+
+
+
+
