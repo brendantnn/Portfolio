@@ -8,10 +8,10 @@ const Projects = () => {
 
   return (
     <section id="projects" style={{ background: '#18181b', color: '#fafafa', padding: '3rem 0', textAlign: 'center', width: '100%' }}>
-      <h2 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '2rem' }}>Projects</h2>
+      <h2 style={{ fontSize: '3rem', fontWeight: 600, marginBottom: '2rem' }}>Projects</h2>
       {categories.map(category => (
         <div key={category} style={{ marginBottom: '2rem' }}>
-          <h3 style={{ color: '#38bdf8', marginBottom: '1rem' }}>{category}</h3>
+          <h2 style={{ color: '#38bdf8', marginBottom: '1rem' }}>{category}</h2>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.5rem' }}>
             {projects.filter(p => p.category === category).map(project => (
               <div
