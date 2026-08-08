@@ -12,8 +12,8 @@ function App() {
     <div style={{ background: '#18181b', minHeight: '100vh', width: '100vw', margin: 0, padding: 0 }}>
       <Header />
       <About />
-      <Skills />
       <Experience />
+      <Skills />
       <Projects />
       <Activities />
       <Contact />

@@ -8,8 +8,8 @@ const experience = [
     role: 'Software Engineer',
     organisation: 'HTX (Home Team Science & Technology Agency)',
     employmentType: 'Internship',
-    date: 'May 2026 – Present',
-    description: 'Enterprise AI Products.',
+    date: 'May 2026 – Apr 2027',
+    description: 'Enterprise AI Products',
     logo: htxLogo,
     logoAlt: 'HTX logo',
   },
@@ -38,7 +38,7 @@ const Experience = () => (
   <section
     id="experience"
     aria-labelledby="experience-heading"
-    style={{ background: '#23232a', color: '#fafafa', padding: '6rem 1rem', width: '100%', boxSizing: 'border-box' }}
+    style={{ background: '#18181b', color: '#fafafa', padding: '6rem 1rem', width: '100%', boxSizing: 'border-box' }}
   >
     <div style={{ maxWidth: 900, margin: '0 auto' }}>
       <h2 id="experience-heading" style={{ fontSize: '3rem', fontWeight: 600, margin: '0 0 2rem', textAlign: 'center' }}>
@@ -48,7 +48,17 @@ const Experience = () => (
         {experience.map((item) => (
           <article
             key={`${item.organisation}-${item.role}`}
-            style={{ display: 'flex', gap: '1rem', borderLeft: '3px solid #38bdf8', background: '#18181b', borderRadius: '0 8px 8px 0', padding: '1.5rem', textAlign: 'left' }}
+            style={{
+              display: 'flex',
+              gap: '1rem',
+              background: 'linear-gradient(145deg, #27272f 0%, #202026 100%)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              borderLeft: '3px solid #38bdf8',
+              borderRadius: '0 12px 12px 0',
+              boxShadow: '0 12px 28px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.03)',
+              padding: '1.5rem',
+              textAlign: 'left',
+            }}
           >
             <img
               src={item.logo}

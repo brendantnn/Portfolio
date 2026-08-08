@@ -11,7 +11,12 @@ const About = () => (
     <div className="about-textbox">
       <h1 className="about-heading">Hi, I’m Brendan.</h1>
       <p className="about-paragraph">
-        I am a Software Engineering student in my second year at the Singapore Institute of Technology. I specialize in AI integration, Java, and Web Development, with a strong interest in software development and all things tech-related. <br /> I enjoy exploring how technology can be applied to solve real-world problems and streamline everyday tasks.
+        I am a Software Engineering student in my final year at the Singapore Institute of Technology. 
+
+        I’m passionate about building AI-powered applications and AI agents that solve real-world problems. 
+        Currently, I’m expanding my skills in AI agent development and DevOps, with a strong interest in building scalable,
+         reliable software systems.
+       
         <br /><br />
       </p>
       <div className="about-feature">
