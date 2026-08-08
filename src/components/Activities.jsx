@@ -2,17 +2,11 @@ import React from 'react';
 
 const activities = [
 
-    {
-        title: "Tech Mentor – National Youth Tech Championship 2025",
-        description: "Guided secondary school students in programming AI-driven drones with Python. Featured in The Straits Times for mentoring efforts.",
-        date: "Jul 2025",
-      },
-{
-    title: "Teaching Assistant – Object Oriented Programming",
-    description: "At the Singapore Institute Of Technology, I assisted software engineering students in understanding and applying Object-Oriented Programming concepts with Java",
-    date: "Jan 2025 - Apr 2025",
+  {
+    title: "Tech Mentor – National Youth Tech Championship 2025",
+    description: "Guided secondary school students in programming AI-driven drones with Python. Featured in The Straits Times for mentoring efforts.",
+    date: "Jul 2025",
   },
- 
   {
     title: "NUS Guru AI Innovation Challenge Certificate Of Excellence",
     description: "Built a web application with Open AI integration. Job Cupid is an AI job matching platform that streamlines the job hunting process by automating resume-matching, cover letter generation and job application processes",
