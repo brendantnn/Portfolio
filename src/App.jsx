@@ -54,7 +54,7 @@ function App() {
           <section className="container page-intro">
             <p className="eyebrow">Page not found</p>
             <h1>Let’s get you back to the work.</h1>
-            <a className="button primary" href="#/projects">Browse projects <span aria-hidden="true">→</span></a>
+            <a className="button primary" href="#/projects">Browse projects</a>
           </section>
         )}
       </main>
