@@ -1,9 +1,3 @@
-import React from 'react';
-
-const Footer = () => (
-  <footer style={{ background: '#18181b', color: '#a1a1aa', padding: '1rem 0', textAlign: 'center', fontSize: '0.95rem', width: '100%' }}>
-    &copy; {new Date().getFullYear()} Brendan Tan
-  </footer>
-);
-
-export default Footer;
+export default function Footer() {
+  return <footer className="site-footer"><div className="container footer-inner"><span>© {new Date().getFullYear()} Brendan Tan</span><a href="#about">Back to home ↑</a></div></footer>;
+}

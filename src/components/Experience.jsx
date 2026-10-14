@@ -1,90 +1,22 @@
-import React from 'react';
 import htxLogo from '../assets/htx-logo.png';
 import sitLogo from '../assets/sit-logo.png';
 import accentureLogo from '../assets/accenture-logo.png';
 
 const experience = [
   {
-    role: 'Software Engineer',
-    organisation: 'HTX (Home Team Science & Technology Agency)',
-    employmentType: 'Internship',
-    date: 'May 2026 – Apr 2027',
-    description: 'As part of the Enterprise AI Products team, I build and deploy full-stack applications, implement GitLab CI/CD pipelines, and support service deployments and migrations using Kubernetes and GitOps. I also work on AI agents and agentic workflows to automate engineering tasks and improve software delivery.',
-    logo: htxLogo,
-    logoAlt: 'HTX logo',
+    role: 'Software Engineering Intern', organisation: 'HTX · Enterprise AI Products', date: 'May 2026 – Apr 2027', logo: htxLogo, logoAlt: 'HTX logo',
+    description: 'I build and deploy full-stack applications, implement GitLab CI/CD pipelines, and support service deployments and migrations using Kubernetes and GitOps. I also work on AI agents and agentic workflows to automate engineering tasks and improve software delivery.',
   },
   {
-    role: 'Teaching Assistant — Object-Oriented Programming',
-    organisation: 'Singapore Institute of Technology',
-    employmentType: 'Part-time',
-    date: 'Jan 2025 – Apr 2025',
-    description: 'Supported weekly Object-Oriented Programming (OOP) labs, guiding students through hands-on exercises to build applications using OOP principles. Answered questions, clarified concepts, and helped students debug their code.',
-    logo: sitLogo,
-    logoAlt: 'Singapore Institute of Technology logo',
+    role: 'Teaching Assistant — Object-Oriented Programming', organisation: 'Singapore Institute of Technology · Part-time', date: 'Jan 2025 – Apr 2025', logo: sitLogo, logoAlt: 'Singapore Institute of Technology logo',
+    description: 'Supported weekly OOP labs, guiding students through hands-on application development. Answered questions, clarified concepts and helped students debug their code.',
   },
   {
-    role: 'Software Engineer',
-    organisation: 'Accenture',
-    employmentType: 'Internship',
-    date: 'Mar 2020 – Aug 2020',
-    location: 'Singapore',
-    description: 'Worked with a Singapore Government Agency to maintain and improve its e-HR system. Used SAP and ABAP to support maintenance, defect management, and service-request handling.',
-    logo: accentureLogo,
-    logoAlt: 'Accenture logo',
+    role: 'Software Engineering Intern', organisation: 'Accenture · Singapore', date: 'Mar 2020 – Aug 2020', logo: accentureLogo, logoAlt: 'Accenture logo',
+    description: 'Worked with a Singapore Government Agency to maintain and improve its e-HR system. Used SAP and ABAP to support maintenance, defect management and service-request handling.',
   },
 ];
 
-const Experience = () => (
-  <section
-    id="experience"
-    aria-labelledby="experience-heading"
-    style={{ background: '#18181b', color: '#fafafa', padding: '6rem 1rem', width: '100%', boxSizing: 'border-box' }}
-  >
-    <div style={{ maxWidth: 900, margin: '0 auto' }}>
-      <h2 id="experience-heading" style={{ fontSize: '3rem', fontWeight: 600, margin: '0 0 2rem', textAlign: 'center' }}>
-        Work Experience
-      </h2>
-      <div style={{ display: 'grid', gap: '1rem' }}>
-        {experience.map((item) => (
-          <article
-            key={`${item.organisation}-${item.role}`}
-            style={{
-              display: 'flex',
-              gap: '1rem',
-              background: 'linear-gradient(145deg, #27272f 0%, #202026 100%)',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              borderLeft: '3px solid #38bdf8',
-              borderRadius: '0 12px 12px 0',
-              boxShadow: '0 12px 28px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.03)',
-              padding: '1.5rem',
-              textAlign: 'left',
-            }}
-          >
-            <img
-              src={item.logo}
-              alt={item.logoAlt}
-              width="56"
-              height="56"
-              style={{ width: 56, height: 56, objectFit: 'contain', borderRadius: 8, flex: '0 0 auto' }}
-            />
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', gap: '0.5rem 1rem', marginBottom: '0.6rem' }}>
-                <div>
-                  <h3 style={{ fontSize: '1.25rem', margin: 0 }}>{item.role}</h3>
-                  <p style={{ color: '#38bdf8', margin: '0.25rem 0 0', fontWeight: 500 }}>
-                    {item.organisation} · {item.employmentType}
-                  </p>
-                </div>
-                <p style={{ color: '#a1a1aa', margin: 0 }}>{item.date}</p>
-              </div>
-              {item.location && <p style={{ color: '#a1a1aa', margin: '0 0 0.6rem' }}>{item.location}</p>}
-              <p style={{ color: '#d4d4d8', lineHeight: 1.6, margin: 0 }}>{item.description}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-export default Experience;
+export default function Experience() {
+  return <section id="experience" className="experience-section" aria-labelledby="experience-heading"><div className="container section"><div className="section-heading"><div><p className="eyebrow">Experience</p><h2 id="experience-heading">Work experience</h2></div></div><div className="experience-list">{experience.map(item => <article className="experience-item" key={item.organisation}><img src={item.logo} alt={item.logoAlt} width="52" height="52" loading="lazy" /><div className="experience-copy"><div className="experience-heading"><div><h3>{item.role}</h3><p className="experience-organisation">{item.organisation}</p></div><p className="experience-date">{item.date}</p></div><p className="experience-description">{item.description}</p></div></article>)}</div></div></section>;
+}

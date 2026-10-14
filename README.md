@@ -1,12 +1,26 @@
-# React + Vite
+# Brendan Tan — Software Engineering Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React 19, Vite 7, JavaScript and CSS. The live portfolio is hosted on Vercel.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```sh
+npm ci
+npm run dev
+```
 
-## Expanding the ESLint configuration
+Vite prints the local preview URL. Run `npm run build` for a production build, or `npm run preview` to serve that build locally.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Pages and content
+
+- `#/` — homepage with three featured projects, experience, skills, activities and contact links.
+- `#/projects` — full project collection, grouped and filterable by category.
+- `#/projects/<project-id>` — individual project details, contributions, repository links and available media.
+
+Hash routes support direct links, refresh and browser history on static hosting without additional rewrite configuration. The homepage also supports section anchors such as `#experience` and `#contact`.
+
+Project content lives in `src/projectsData.js`. Set `featured: true` and a stable `id` to feature an entry. Featured descriptions distinguish the overall team project from Brendan's own contribution and retain prototype context.
+
+The hero uses the existing 960 × 640 photograph with responsive cropping. A higher-resolution original would improve sharpness on large and high-density displays.
+
+No résumé file is included yet. Add one under `public/` and replace the secondary hero contact action with its link when ready.

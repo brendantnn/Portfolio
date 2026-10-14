@@ -1,120 +1,94 @@
-import React, { useState } from 'react';
-import projects from '../projectsData';
+import { useState } from 'react';
+import projects, { featuredProjects, otherProjects } from '../projectsData';
 
-const categories = [...new Set(projects.map(p => p.category))];
+function ProjectVisual({ project }) {
+  if (project.images?.length) {
+    return <div className="project-visual screenshot"><img src={project.images[0]} alt={`${project.title} screenshot`} loading="lazy" /></div>;
+  }
+  if (project.visual === 'fitness') {
+    return (
+      <div className="project-visual fitness-visual" aria-label="Diagram of pose landmarks used for push-up detection">
+        <span className="visual-label">Pose detection</span>
+        <svg viewBox="0 0 300 130" aria-hidden="true">
+          <g fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M65 40 L100 48 L148 61 L205 78 L251 100 M100 48 L106 82 L82 110" />
+            <circle cx="49" cy="34" r="15" /><path d="M63 39 L65 40" />
+          </g>
+          <g fill="currentColor">{[[65,40],[100,48],[148,61],[205,78],[251,100],[106,82],[82,110]].map(([x,y]) => <circle key={`${x}-${y}`} cx={x} cy={y} r="5" />)}</g>
+        </svg>
+        <div className="visual-caption"><span>Joint angles</span><span>Reps & form</span></div>
+      </div>
+    );
+  }
+  const steps = project.visual === 'podiatry' ? ['Symptom intake', 'AI assessment', 'Appointment'] : project.visual === 'smartbin' ? ['Sense & capture', 'AI inference', 'Servo sorting'] : null;
+  if (steps) {
+    return (
+      <div className={`project-visual workflow-visual ${project.visual}`} aria-label={`${project.title} workflow diagram`}>
+        <span className="visual-label">{project.visual === 'podiatry' ? 'Conversation → action' : 'Software → physical action'}</span>
+        <div className="workflow">{steps.map((step, index) => <div className="workflow-step" key={step}><span className="workflow-symbol" aria-hidden="true">{index === 0 ? '01' : index === 1 ? '02' : '03'}</span><span>{step}</span></div>)}</div>
+        <div className="visual-caption"><span>{project.visual === 'podiatry' ? 'Patient agent workflow' : 'Raspberry Pi pipeline'}</span></div>
+      </div>
+    );
+  }
+  return <div className="project-visual text-visual" aria-hidden="true"><span>{project.category}</span><strong>{project.techStack?.slice(0, 2).join(' / ')}</strong></div>;
+}
 
-const Projects = () => {
-  const [openProject, setOpenProject] = useState(null);
-
+function ProjectCard({ project, featured = false }) {
   return (
-    <section id="projects" style={{ background: '#18181b', color: '#fafafa', padding: '3rem 0', textAlign: 'center', width: '100%' }}>
-      <h2 style={{ fontSize: '3rem', fontWeight: 600, marginBottom: '2rem' }}>Projects</h2>
-      {categories.map(category => (
-        <div key={category} style={{ marginBottom: '2rem' }}>
-          <h2 style={{ color: '#38bdf8', marginBottom: '1rem' }}>{category}</h2>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '1.5rem' }}>
-            {projects.filter(p => p.category === category).map(project => (
-              <div
-                key={project.title}
-                style={{
-                  background: '#23232a',
-                  borderRadius: '8px',
-                  padding: '1.5rem 1.5rem 1rem 1.5rem',
-                  minWidth: 260,
-                  maxWidth: 340,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'flex-start'
-                }}
-                onClick={() => setOpenProject(project)}
-              >
-                <h4 style={{
-                  margin: '0 0 0.5rem 0',
-                  fontWeight: 700,
-                  textAlign: 'center',
-                  width: '100%'
-                }}>
-                  {project.title}
-                </h4>
-
-                <p style={{ fontSize: '0.98rem', color: '#a1a1aa', marginBottom: '0.7rem' }}>{project.description}</p>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '0.2rem' }}>
-                  {project.techStack && project.techStack.map(tech => (
-                    <span key={tech} style={{
-                      background: '#18181b',
-                      color: '#4f8cff',
-                      fontSize: '0.85rem',
-                      fontWeight: 500,
-                      borderRadius: 6,
-                      padding: '0.18em 0.7em',
-                      marginRight: '0.2em'
-                    }}>{tech}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+    <article className={`project-card${featured ? ' featured-card' : ''}`}>
+      <ProjectVisual project={project} />
+      <div className="project-card-content">
+        <p className="project-category">{project.status || project.category}</p>
+        <h3><a href={`#/projects/${project.id}`}>{project.title}</a></h3>
+        <p className="project-description">{project.description}</p>
+        {featured && <div className="project-contribution"><span>My contribution</span><p>{project.contribution}</p></div>}
+        <ul className="tech-list" aria-label="Technologies">{project.techStack?.slice(0, 4).map(tech => <li key={tech}>{tech}</li>)}</ul>
+        <div className="project-card-links">
+          <a className="text-link" href={`#/projects/${project.id}`}>View project <span aria-hidden="true">→</span></a>
+          {project.repository && <a className="text-link muted-link" href={project.repository} target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>}
         </div>
-      ))}
+      </div>
+    </article>
+  );
+}
 
-      {/* Modal */}
-      {openProject && (
-        <div style={{
-          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
-          background: 'rgba(0,0,0,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
-        }}
-          onClick={() => setOpenProject(null)}
-        >
-          <div
-            style={{
-              background: '#23232a',
-              padding: '2rem',
-              borderRadius: '10px',
-              minWidth: 320,
-              maxWidth: 500,
-              maxHeight: '80vh',
-              overflowY: 'auto',
-              color: '#fafafa',
-              position: 'relative',
-              scrollbarWidth: 'thin',
-              scrollbarColor: '#4f8cff #23232a'
-            }}
-            onClick={e => e.stopPropagation()}
-          >
-            <button
-              onClick={() => setOpenProject(null)}
-              style={{ position: 'absolute', top: 10, right: 10, background: 'none', border: 'none', color: '#fafafa', fontSize: '1.5rem', cursor: 'pointer', zIndex: 1 }}
-            >×</button>
-            <h2>{openProject.title}</h2>
-            <p style={{ color: '#4f8cff', fontWeight: 500, fontSize: '1rem', margin: '0.5rem 0 1.2rem 0' }}>
-              {openProject.techStack && openProject.techStack.join(' • ')}
-            </p>
-<p style={{ textAlign: 'left', whiteSpace: 'pre-wrap' }}>
-  {openProject.details || openProject.description}
-</p>
-
-            {openProject.images && openProject.images.length > 0 && (
-              <div style={{ marginTop: '1rem' }}>
-                {openProject.images.map((img, idx) => (
-                  <img key={idx} src={img} alt="" style={{ maxWidth: '100%', marginBottom: '0.5rem', borderRadius: '6px' }} />
-                ))}
-              </div>
-            )}
-            {openProject.video && (
-              <div style={{ marginTop: '1.5rem' }}>
-                <video controls style={{ width: '100%', borderRadius: '6px' }}>
-                  <source src={openProject.video} type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            )}
-
-          </div>
-        </div>
-      )}
+export function FeaturedProjects() {
+  return (
+    <section id="featured-projects" className="section container" aria-labelledby="featured-heading">
+      <div className="section-heading"><div><p className="eyebrow">Selected work</p><h2 id="featured-heading">Featured projects</h2></div></div>
+      <div className="project-grid">{featuredProjects.map(project => <ProjectCard key={project.id} project={project} featured />)}</div>
+      <div className="browse-projects"><p>More web, mobile, embedded and software design work.</p><a className="button" href="#/projects">Browse all projects <span aria-hidden="true">→</span></a></div>
     </section>
   );
-};
+}
 
-export default Projects;
+export default function Projects() {
+  const [category, setCategory] = useState('All categories');
+  const categories = [...new Set(projects.map(project => project.category))];
+  const matches = project => category === 'All categories' || project.category === category;
+  const selected = featuredProjects.filter(matches);
+  const archive = otherProjects.filter(matches);
+  return (
+    <div className="container projects-page">
+      <section className="page-intro"><a className="text-link" href="#/">← Back to home</a><p className="eyebrow">Project collection</p><h1>Projects</h1></section>
+      <div className="project-filter"><label htmlFor="project-category">Browse by category</label><select id="project-category" value={category} onChange={event => setCategory(event.target.value)}><option>All categories</option>{categories.map(item => <option key={item}>{item}</option>)}</select><span role="status">{selected.length + archive.length} projects</span></div>
+      {selected.length > 0 && <section className="collection-section" aria-labelledby="collection-featured"><h2 id="collection-featured">Featured projects</h2><div className="project-grid">{selected.map(project => <ProjectCard key={project.id} project={project} />)}</div></section>}
+      {archive.length > 0 && <section className="collection-section" aria-labelledby="collection-more"><h2 id="collection-more">More projects</h2>{categories.filter(item => archive.some(project => project.category === item)).map(item => <div className="category-group" key={item}><h3>{item}</h3><div className="project-grid">{archive.filter(project => project.category === item).map(project => <ProjectCard key={project.id} project={project} />)}</div></div>)}</section>}
+    </div>
+  );
+}
+
+export function ProjectDetail({ project }) {
+  return (
+    <article className="container project-detail">
+      <a className="text-link" href="#/projects">← All projects</a>
+      <header className="detail-heading"><p className="eyebrow">{project.status || project.category}</p><h1>{project.title}</h1><p className="detail-description">{project.description}</p><div className="actions">{project.repository && <a className="button primary" href={project.repository} target="_blank" rel="noopener noreferrer">View repository <span aria-hidden="true">↗</span></a>}{project.demo && <a className="button" href={project.demo} target="_blank" rel="noopener noreferrer">{project.demoLabel || 'View demo'} <span aria-hidden="true">↗</span></a>}</div></header>
+      {project.visual && <ProjectVisual project={project} />}
+      <ul className="tech-list detail-tech" aria-label="Technologies">{project.techStack?.map(tech => <li key={tech}>{tech}</li>)}</ul>
+      {project.featured ? <div className="detail-sections"><section><p className="eyebrow">My role</p><h2>{project.role}</h2><p>{project.contribution}</p><ul className="contribution-list">{project.contributions.map(item => <li key={item}>{item}</li>)}</ul></section><section><h2>Technical approach</h2><p>{project.approach}</p></section><section className="project-scope"><h2>Project context</h2><p>{project.scope}</p></section></div> : <section className="detail-sections"><h2>About this project</h2><p className="project-long-description">{project.details || project.description}</p></section>}
+      {project.images?.length > 0 && <section className="project-gallery" aria-label="Project screenshots">{project.images.map((image, index) => <img src={image} key={image} loading="lazy" alt={`${project.title} screenshot ${index + 1}`} />)}</section>}
+      {project.video && <section className="project-demo"><h2>Project demonstration</h2><video src={project.video} controls preload="metadata" playsInline aria-label={`${project.title} demonstration`}>Your browser does not support embedded video.</video></section>}
+      <a className="text-link detail-back" href="#/projects">Explore more projects <span aria-hidden="true">→</span></a>
+    </article>
+  );
+}

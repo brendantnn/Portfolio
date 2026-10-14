@@ -1,13 +1,11 @@
-import React from 'react';
+import ContactIcons from './ContactIcons';
 
-const Contact = () => (
-  <section id="contact" style={{ background: '#23232a', color: '#fafafa', padding: '3rem 0', textAlign: 'center', width: '100%' }}>
-    <h2 style={{ fontSize: '1.5rem', fontWeight: 600, marginBottom: '1rem' }}>Contact</h2>
-    <p style={{ fontSize: '1.1rem', marginBottom: '0.5rem' }}>
-      Email: <a href="mailto:brendantan098@gmail.com" style={{ color: '#38bdf8', textDecoration: 'none' }}>brendantan098@gmail.com</a>
-    </p>
-  
-  </section>
-);
-
-export default Contact;
+export default function Contact() {
+  return (
+    <section id="contact" className="contact-section" aria-label="Contact links">
+      <div className="container section contact-inner">
+        <ContactIcons />
+      </div>
+    </section>
+  );
+}

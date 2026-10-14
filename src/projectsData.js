@@ -8,25 +8,54 @@ import oopgameImage from './assets/oopgame.png';
 import gamestoreImage from './assets/gamestore.png';
 import shoeInventoryImage from './assets/database.png';
 import robotCarVideo from './assets/robotcar-demo.mp4';
-import pushUpVideo from './assets/pushup.mp4';
 
 
 
 const projects = [
 
   {
-    title: "AI Chatbot for Podiatry Consultation",
-    description: "Full-stack, multilingual AI chatbot system for Singapore General Hospital's podiatry department. Automates triage, streamlines appointment booking, and supports podiatrists in managing consultations.",
-    category: "Artifical Intelligence / Machine Learning",
-    techStack: ["OpenAI GPT", "Node.js", "Express.js", "Firebase", "Google Translate API", "Twilio", "JavaScript"],
-    details: `Built a full-stack, multilingual AI chatbot system to automate triage, streamline appointment booking, and support podiatrists in managing patient consultations. Designed to improve efficiency and reduce waiting times in Singapore General Hospital's podiatry department.\n\n- Developed chatbot with AI triage, multilingual support, intent classification\n- Engineered GPT-3.5 prompt flows for podiatric case classification and urgency detection \n- Implemented automated booking logic based on triaged urgency levels\n- Applied Agile methodology and led sprint-based quality assurance with internal simulations`,
+    id: 'ai-podiatry-assistant',
+    featured: true,
+    title: 'AI Podiatry Assistant',
+    description: 'An academic prototype connecting conversational symptom intake, image-based assessment and appointment coordination.',
+    category: 'AI Applications',
+    status: 'Academic prototype',
+    visual: 'podiatry',
+    role: 'AI engineering & patient chatbot',
+    repository: 'https://github.com/brendantnn/ai-podiatry-assistant',
+    contribution: 'Proposed the AI agent approach, established the initial application structure, selected and integrated OpenAI models, and developed the patient-facing chatbot and its multi-turn triage and appointment workflows.',
+    contributions: [
+      'Established the initial Node.js/Express structure and connected the chatbot to OpenAI models.',
+      'Built the patient chatbot page and multi-turn intake, structured triage and appointment coordination logic.',
+      'Contributed image-input, multilingual and voice-input functionality alongside the wider team.'
+    ],
+    approach: 'An explicit conversation state machine coordinates symptom intake, model responses and confirmed booking actions. Application code handles database queries and workflow transitions.',
+    scope: 'This is an academic prototype. Its assessments and urgency labels have not been clinically validated for patient care.',
+    techStack: ['Node.js', 'Express', 'OpenAI', 'Firebase', 'Translation', 'Twilio', 'JavaScript'],
+    details: 'An academic team prototype with separate patient and podiatrist interfaces. The patient-facing chatbot combines multi-turn symptom intake, image input, structured assessment and appointment coordination. Assessments require clinical validation before use in patient care.',
     images: []
   },
 
   {
-    title: "AI integrated android fitness app",
-    description: "Android fitness app that uses AI pose detection and AR to improve IPPT performance through guided workouts and running tracking.",
-    category: "Artifical Intelligence / Machine Learning",
+    id: 'ippt-fitness-tracker',
+    featured: true,
+    title: 'IPPT Fitness Tracker',
+    description: 'An Android fitness app with pose-based exercise counting, GPS run tracking, workout history and AR exercise guidance.',
+    category: 'Mobile Applications',
+    status: 'Team project',
+    visual: 'fitness',
+    role: 'Android development & pose detection',
+    repository: 'https://github.com/brendantnn/ippt-fitness-tracker',
+    demo: 'https://youtu.be/ig2B8Un7O2M',
+    demoLabel: 'Watch demo',
+    contribution: 'Built the push-up tracking screen and implemented pose-based repetition counting, form checks and real-time visual/audio feedback using CameraX and ML Kit.',
+    contributions: [
+      'Built the push-up tracking screen and connected CameraX frames to ML Kit pose detection.',
+      'Used joint angles and movement states to count complete repetitions and check body alignment.',
+      'Added skeleton overlays, positioning prompts and audio feedback; also contributed the initial app structure and exercise-session timing.'
+    ],
+    approach: 'Pose landmarks provide joint angles; application logic checks posture and tracks the down/up movement before counting a repetition.',
+    scope: 'A team-built Android application. My main responsibility was the push-up feature; GPS tracking, AR, storage and other features were developed collaboratively.',
     techStack: ["Kotlin", "Jetpack Compose", "Android Studio", "ML Kit Pose Detection",
       "CameraX", "Room", "Google Maps Compose", "Scene Viewer (AR)"],
     details: `Built a full-featured Android app that helps users improve their IPPT performance using AI and AR. The app detects correct form for sit-ups and push-ups, tracks runs via GPS, and includes tutorials in augmented reality.
@@ -39,13 +68,36 @@ Key Features:
 • AR tutorials using Scene Viewer to demonstrate proper form for each exercise`,
 
     images: [],
-    video: pushUpVideo
+    video: null
+  },
+
+  {
+    id: 'ai-smartbin',
+    featured: true,
+    title: 'AI SmartBin',
+    description: 'An AI-powered waste-sorting prototype combining Raspberry Pi hardware, image classification and a monitoring dashboard.',
+    category: 'Embedded Systems',
+    status: 'Academic prototype',
+    visual: 'smartbin',
+    role: 'Embedded systems & AI integration',
+    repository: 'https://github.com/brendantnn/ai-smartbin',
+    techStack: ['Python', 'Raspberry Pi', 'TensorFlow Lite', 'GPIO', 'MQTT', 'Next.js', 'PostgreSQL'],
+    contribution: 'Built and wired the physical prototype, implemented servo control, and integrated the team’s AI classifier with the Raspberry Pi sensing, camera and waste-sorting pipeline.',
+    contributions: [
+      'Owned the physical prototype and Raspberry Pi integration, including wiring, sensors, camera setup and motor control.',
+      'Brought different contributors’ code together into a coordinated detection, image-capture, inference and sorting pipeline.',
+      'Connected classifier outputs to bin selection and the servo-driven release mechanism.'
+    ],
+    approach: 'The main Pi detects an item, captures its image, invokes TensorFlow Lite inference, selects the matching bin and actuates the release servo.',
+    scope: 'A team academic prototype. My AI contribution was inference integration. The classifier and dashboard were team components; the public repository does not include all dashboard-ingestion services or production infrastructure.',
+    details: 'A Raspberry Pi waste-sorting prototype with a separate bin-capacity monitoring module and a Next.js dashboard backed by Prisma and PostgreSQL. The main Pi coordinates ultrasonic sensing, camera capture, image classification and servo-based sorting.',
+    images: []
   },
 
   {
     title: "Student Dropout Prediction",
     description: "Used ML models to predict student dropout risk based on academic and financial features. Performed feature engineering and benchmarking with XGBoost, LightGBM, and SVM.",
-    category: "Artifical Intelligence / Machine Learning",
+    category: 'AI Applications',
     techStack: ["Machine Learning", "Python", "Scikit-learn", "XGBoost", "LightGBM", "SVM", "Google Colab", "Pandas"],
     details: `With my group members, we built a machine learning pipeline to predict student dropout rates using academic records and financial indicators. Applied EDA, handled class imbalance, and engineered features like improvement scores and pass/fail ratios.\n\nEvaluated models including Random Forest, KNN, SVM, and Boosting algorithms. Achieved over 77% accuracy using XGBoost and LightGBM.
   
@@ -57,10 +109,11 @@ Key Features:
 
    {
     title: "Personal Portfolio",
-    description: "The website you are at now! I built this to showcase my projects i've done so far. Built with React and Vite. React was my choice of framework because of its reusable components, perfect for adding new projects in the future.",
+    description: 'My software engineering portfolio, built with React and Vite to present selected projects, experience and technical skills.',
     category: "Web Applications",
     techStack: ["React", "Vite", "JavaScript", "CSS3"],
-    details: "The website you are at now! I built this to showcase my projects i've done so far. Built with React and Vite. React was my choice of framework because of its reusable components, perfect for adding new projects in the future.",
+    details: 'I built this portfolio with React and Vite. Reusable components and a shared project data source make it straightforward to add projects and update their presentation.',
+    repository: 'https://github.com/brendantnn/Portfolio',
     images: []
   },
 
@@ -180,7 +233,7 @@ Key Features:
   ,
 
   {
-    title: "Software planning for a Coach Company Workload Management System",
+    title: 'Coach Company Workload Management — Software Planning',
     description: "Software design and documentation project for a coach staff workload management system. Focused on SDLC, UML design, software architecture, and requirement engineering.",
     category: "Software Engineering",
     techStack: ["UML 2.5", "SDLC", "Software Architecture", "Design Patterns", "Requirement Engineering", "Test Planning"],
@@ -213,7 +266,7 @@ Key Features:
   },
   {
     title: "Recycling Game for Kids",
-    description: "With a focus on applying OOP concepts, I developed an educational game developed in Java using LibGDX to encourage and educate kids on recycling through interactive gameplay.",
+    description: 'An educational recycling game built with Java and LibGDX, applying object-oriented programming to interactive gameplay for children.',
     category: "Game Development",
     techStack: ["Object-Oriented Programming", "Java", "LibGDX", "Eclipse"],
     details: `\n● Developed a game using Java in Eclipse Workspace to encourage and educate kids on recycling\n● The goal of the game is for the player to throw the recyclables into the correct recycle bin, while a monster is chasing the player. The player can also throw the recyclable item to the monster for added fun\n● Incorporated Object-Oriented Programming principles\n\nThis educational game combines entertainment with environmental awareness, teaching children about proper recycling practices through engaging gameplay mechanics.`,
@@ -225,4 +278,11 @@ Key Features:
 
 ];
 
-export default projects;
+const projectCollection = projects.map(project => ({
+  ...project,
+  id: project.id || project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
+}));
+
+export const featuredProjects = projectCollection.filter(project => project.featured);
+export const otherProjects = projectCollection.filter(project => !project.featured);
+export default projectCollection;

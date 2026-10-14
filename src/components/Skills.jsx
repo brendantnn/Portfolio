@@ -1,85 +1,9 @@
-import React from 'react';
-
-const languageSkills = [
-  { name: 'Java', iconClass: 'devicon-java-plain colored' },
-  { name: 'JavaScript', iconClass: 'devicon-javascript-plain colored' },
-  { name: 'Python', iconClass: 'devicon-python-plain colored' },
-  { name: 'HTML5', iconClass: 'devicon-html5-plain colored' },
-  { name: 'CSS3', iconClass: 'devicon-css3-plain colored' },
-  { name: 'C', iconClass: 'devicon-c-plain colored' },
-  { name: 'C++', iconClass: 'devicon-cplusplus-plain colored' },
+const groups = [
+  { title: 'Languages', skills: ['JavaScript', 'Python', 'Java', 'Kotlin', 'C', 'C++', 'HTML', 'CSS'] },
+  { title: 'Applications & AI', skills: ['React', 'Node.js', 'Express', 'Angular', 'Bootstrap', 'OpenAI integration', 'ML Kit', 'TensorFlow Lite', 'Firebase'] },
+  { title: 'Delivery & infrastructure', skills: ['Git', 'GitLab CI/CD', 'Kubernetes', 'GitOps', 'Linux', 'Raspberry Pi', 'MQTT'] },
 ];
 
-const frameworkSkills = [
-  { name: 'React', iconClass: 'devicon-react-original colored' },
-  { name: 'Node.js', iconClass: 'devicon-nodejs-plain colored' },
-  { name: 'Express.js', iconClass: 'devicon-express-original' },
-  { name: 'Angular', iconClass: 'devicon-angularjs-plain colored' },
-  { name: 'Bootstrap', iconClass: 'devicon-bootstrap-plain colored' },
-];
-
-function Skills() {
-  const sectionStyle = {
-    padding: '60px 20px',
-    textAlign: 'center',
-    backgroundColor: '#18181b',
-    color: '#fff',
-  };
-
-  const rowStyle = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: '2.5rem',
-    marginTop: '1.5rem',
-  };
-
-  const skillItemStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    minWidth: 70,
-  };
-
-  const iconStyle = {
-    fontSize: '40px',
-  };
-
-  const sectionHeaderStyle = {
-    fontSize: '28px',
-    margin: '40px 0 20px',
-    borderBottom: '2px solid #444',
-    display: 'inline-block',
-    paddingBottom: '5px',
-  };
-
-  const renderSkills = (label, skills) => (
-    <>
-      <h3 style={sectionHeaderStyle}>{label}</h3>
-      <div style={rowStyle}>
-        {skills.map(skill => (
-          <div key={skill.name} style={skillItemStyle}>
-            {skill.iconClass ? (
-              <i className={skill.iconClass} style={iconStyle}></i>
-            ) : (
-              <div style={{ fontSize: '14px', color: '#aaa', height: 40, display: 'flex', alignItems: 'center' }}>
-                [no icon]
-              </div>
-            )}
-            <div style={{ marginTop: 8 }}>{skill.name}</div>
-          </div>
-        ))}
-      </div>
-    </>
-  );
-
-  return (
-    <section className="skills-section" style={sectionStyle}>
-      <h2 style={{ fontSize: '3rem', marginBottom: '30px' }}>My Tech Stack</h2>
-      {renderSkills('Languages', languageSkills)}
-      {renderSkills('Frameworks & Libraries', frameworkSkills)}
-    </section>
-  );
+export default function Skills() {
+  return <section id="skills" className="container section" aria-labelledby="skills-heading"><div className="section-heading"><div><p className="eyebrow">Technical skills</p><h2 id="skills-heading">Technical skills</h2></div></div><div className="skills-grid">{groups.map(group => <div className="skill-group" key={group.title}><h3>{group.title}</h3><ul>{group.skills.map(skill => <li key={skill}>{skill}</li>)}</ul></div>)}</div></section>;
 }
-
-export default Skills;
